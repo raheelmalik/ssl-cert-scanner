@@ -115,4 +115,5 @@ foreach ($item in $servers | ? {$_.name -notlike "#*"}){
 }
 
 ##Display table
-$table | ? {($_.valid -eq $false) -or ($_.expires -lt (get-date).AddDays(30))} | sort Issued | Out-GridView
+$table | sort Issued | Out-GridView -Title "All certs"
+$table | ? {($_.valid -eq $false) -or ($_.expires -lt (get-date).AddDays(30))} | sort Issued | Out-GridView -Title "Certs not valid or expiring within 30 days"
